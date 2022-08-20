@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "photo-gallery-a7b53": {
+      "hosting": {
+        "Photo-Gallery": [
+          "photo-gallery-a7b53"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "photo-gallery-a7b53"
+  }
+}

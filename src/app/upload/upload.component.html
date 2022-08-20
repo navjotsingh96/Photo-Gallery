@@ -1,0 +1,25 @@
+<div class="upload-container">
+    <img [src]="ImageUrl ||'./assets/upload.png '" alt="./assets/upload.png">
+
+    <form class="form" (submit)="setInCollection()">
+        <mat-form-field appearance="fill">
+            <mat-label>Tag or Name</mat-label>
+            <input type="text" [(ngModel)]="imageData.name" matInput [formControl]="nameFormControl" placeholder="Ex. Cat, Dog, Navjot...">
+            <mat-error *ngIf="nameFormControl.hasError('name') && !nameFormControl.hasError('required')">
+                Please enter a Name
+            </mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+
+    <div class="buttons">
+        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input hidden #fileInput (change)="uploadImagestoStorgae($event)" type="file" id="file" name="image" accept=".png, .jpg">
+        <button mat-raised-button [disabled]="Uploadallowed" (click)="setInCollection()"> Upload</button>
+        <button mat-raised-button mat-dialog-close> Close</button>
+
+    </div>
+</div>

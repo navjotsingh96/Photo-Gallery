@@ -1,0 +1,78 @@
+<div class="main-container">
+
+    <div class="search-input">
+        <form (keyup)="searchFunction()" class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Search</mat-label>
+                <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" matInput placeholder="Ex. Cat, Dog, Navjot...">
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="spinner" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="not-found" *ngIf="notFound"> Images Not found</div>
+    <div *ngFor="let search of searchedImages; let i=index">
+        <span *ngIf="search.lenth ==0 ">Not found</span>
+    </div>
+    <div *ngIf="!loading">
+        <div class="gallery-lightbox-container">
+            <div class="gallery">
+                <div>
+                    <div (click)="openDialog()" class="upload-image">
+                        <img src="./assets/upload.png" alt="">
+                        <button mat-raised-button>Upload</button>
+
+                    </div>
+                    <div *ngIf="!searchedImages">
+                        <div *ngFor="let data of galleryImages; let i=index" class="gallery-img">
+                            <div class="image-container">
+                                <img (click)="onPreviewImage(i)" [src]="data.image">
+                                <span *ngIf="data.name" class="tag">{{data.name}}</span>
+
+                                <!--    <span> <a [href]="data.image" class="btn clss"
+                            target="_blank" [download]="data.image">Download</a></span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="searched" *ngIf="searchedImages">
+                        <div *ngFor="let search of searchedImages; let i=index" class="gallery-img">
+                            <div class="image-container">
+                                <img (click)="onPreviewImage(i)" [src]="search.image">
+                                <span *ngIf="search.name" class="tag">{{search.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="previewImage" class="lightbox" @animation2>
+
+                    <span *ngIf="showCount" class="count">
+            {{currentIndex + 1}}/{{totalImageCount}}
+        </span>
+
+
+                    <button mat-icon-button *ngIf="previewImage" class="close-btn" (click)="onClosePreview()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prev()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-next" (click)="next()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+
+            <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next"></i>
+        </button>
+
+                    <div *ngIf="previewImage" [@animation]="{value: 'visible'}" (@animation.done)="onAnimationEnd($event)" class="lightbox-img">
+
+                        <img [src]="currentImageIndex.image">
+                    </div>
+                    <div *ngIf="currentImageIndex?.name" class="tag-div">
+                        <span class="fullscreen-tag"> {{currentImageIndex?.name}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
