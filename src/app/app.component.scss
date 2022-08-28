@@ -1,273 +1,280 @@
-    .main-container {
-        margin-left: 40px;
-        margin-right: 40px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
-    
-    .main-image-container {
-        position: relative;
-        width: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 225ms ease-in-out;
-        box-shadow: 0px 1px 20px 0px;
-        margin-left: 25px;
-    }
-    
-    .search-input {
-        position: fixed;
-        z-index: 5;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 0 10px 0;
-    }
-    
-    .spinner {
-        position: absolute;
-        right: 50%;
-        top: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    /*     .image {
-        width: 400px;
-        height: 350px;
-        object-fit: contain;
-    } */
-    
-    .image-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        margin-top: 20px;
-        &:hover {
-            cursor: pointer;
-            .tag {
-                transition: all 225ms ease-in-out;
-                height: 70px;
-            }
-        }
-    }
-    
-    .tag {
-        position: absolute;
-        background: #000000bf;
-        bottom: 0;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        font-size: 18px;
-        transition: all 225ms ease-in-out;
-        height: 60px;
-    }
-    
-    .upload-image {
-        position: relative;
-        transition: all 225ms ease-in-out;
+.main-container {
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-image-container {
+    position: relative;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 225ms ease-in-out;
+    box-shadow: 0px 1px 20px 0px;
+    margin-left: 25px;
+}
+
+.search-input {
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px 0;
+}
+
+.spinner {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*     .image {
+    width: 400px;
+    height: 350px;
+    object-fit: contain;
+} */
+
+.image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    &:hover {
         cursor: pointer;
-        &:hover {
-            button {
-                height: 70px !important;
-            }
-        }
-        button {
+        .tag {
             transition: all 225ms ease-in-out;
-            position: absolute;
-            bottom: 0;
-            /* left: 0; */
-            /* right: 0; */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 60px !important;
-            background: #000000bf !important;
-            color: white;
-        }
-        img {
-            width: 200px;
+            height: 70px;
         }
     }
-    
-     :host {
-        display: block;
-        text-align: center;
+}
+
+.tag {
+    position: absolute;
+    background: #000000bf;
+    bottom: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 18px;
+    transition: all 225ms ease-in-out;
+    height: 60px;
+}
+
+.upload-image {
+    position: relative;
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    &:hover {
+        button {
+            height: 70px !important;
+        }
     }
-    
-    .gallery-lightbox-container {
-        position: relative;
-        display: inline-block;
-        padding: 25px;
+    button {
+        transition: all 225ms ease-in-out;
+        position: absolute;
+        bottom: 0;
+        /* left: 0; */
+        /* right: 0; */
         display: flex;
+        align-items: center;
         justify-content: center;
-        padding-top: 130px;
-        .gallery {
-            line-height: 0;
-            column-count: 4;
-            column-gap: 30px;
-            .gallery-img img {
-                width: 100%;
-                height: auto;
-                cursor: pointer;
-                border-radius: .35rem;
-                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .21);
-            }
+        width: 100%;
+        height: 60px !important;
+        background: #000000bf !important;
+        color: white;
+    }
+    img {
+        width: 200px;
+    }
+}
+
+ :host {
+    display: block;
+    text-align: center;
+}
+
+.gallery-lightbox-container {
+    position: relative;
+    display: inline-block;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    padding-top: 130px;
+    .gallery {
+        line-height: 0;
+        column-count: 4;
+        column-gap: 30px;
+        .gallery-img img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: .35rem;
+            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .21);
         }
-        .lightbox {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
+    }
+    .lightbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, .85);
+        .count {
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            background-color: rgba(0, 0, 0, .85);
-            .count {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 7%;
-                height: 10%;
-                color: #fff;
-                opacity: 0.7;
-                font-size: 18px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-left: 5px;
+            width: 7%;
+            height: 10%;
+            color: #fff;
+            opacity: 0.7;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0;
+            color: #fff;
+            background: 0 0;
+            border: 0;
+            cursor: pointer;
+            width: 7%;
+            height: 10%;
+            z-index: 2;
+            .fa-times {
+                font-size: 25px;
             }
-            .close-btn {
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 0;
-                color: #fff;
-                background: 0 0;
-                border: 0;
-                cursor: pointer;
-                width: 7%;
-                height: 10%;
-                z-index: 2;
-                .fa-times {
-                    font-size: 25px;
-                }
-            }
-            .btn-lightbox-carousel {
-                position: absolute;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1;
-                width: 5%;
-                height: 5%;
-                padding: 0;
-                color: #fff;
-                text-align: center;
-                background: 0 0;
-                border: 0;
-                cursor: pointer;
-                background-color: #000000b3;
-                box-shadow: 0 0 20px 0px;
-            }
-            .btn-prev {
-                left: 0;
-            }
-            .btn-next {
-                right: 0;
-            }
-            .icon-lightbox-carousel {
-                color: #fff;
-                opacity: 0.5;
-                transition: all 0.15s ease;
-            }
-            .icon-lightbox-carousel:hover {
-                opacity: 0.9;
-            }
-            .icon-lightbox-carousel:active {
-                opacity: 0.5;
-            }
-            .icon-prev,
-            .icon-next {
-                font-size: 30px;
-            }
-            .lightbox-img img {
-                width: 80%;
-                border-radius: .35rem;
+        }
+        .btn-lightbox-carousel {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            width: 5%;
+            height: 5%;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            background: 0 0;
+            border: 0;
+            cursor: pointer;
+            background-color: #000000b3;
+            box-shadow: 0 0 20px 0px;
+        }
+        .btn-prev {
+            left: 0;
+        }
+        .btn-next {
+            right: 0;
+        }
+        .icon-lightbox-carousel {
+            color: #fff;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .icon-lightbox-carousel:hover {
+            opacity: 0.9;
+        }
+        .icon-lightbox-carousel:active {
+            opacity: 0.5;
+        }
+        .icon-prev,
+        .icon-next {
+            font-size: 30px;
+        }
+        .lightbox-img img {
+            width: 80%;
+            border-radius: .35rem;
+        }
+    }
+}
+
+.lightbox-img {
+    position: relative;
+}
+
+.tag-div {
+    position: absolute;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    bottom: 0;
+    span {
+        font-size: 25px;
+        padding: 5px;
+    }
+}
+
+mat-form-field {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.not-found {
+    position: absolute;
+    top: 18%;
+}
+
+@media screen and (max-width: 1024px) {
+    .gallery-lightbox-container {
+        .gallery {
+            column-count: 2;
+            width: calc(100% - 80px);
+            .gallery-img img {
+                width: 100%;
             }
         }
     }
-    
-    .lightbox-img {
-        position: relative;
-    }
-    
-    .tag-div {
-        position: absolute;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        color: white;
-        bottom: 0;
-        span {
-            font-size: 25px;
-            padding: 5px;
-        }
-    }
-    
-    mat-form-field {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        padding-top: 15px;
-    }
-    
-    .not-found {
-        position: absolute;
-        top: 18%;
-    }
-    
-    @media screen and (max-width: 1024px) {
-        .gallery-lightbox-container {
-            .gallery {
-                column-count: 2;
-                width: calc(100% - 80px);
-                .gallery-img img {
-                    width: 100%;
-                }
+}
+
+@media screen and (max-width: 800px) {
+    .gallery-lightbox-container {
+        .gallery {
+            column-count: 2;
+            .gallery-img img {
+                max-width: 100%;
             }
         }
     }
-    
-    @media screen and (max-width: 800px) {
-        .gallery-lightbox-container {
-            .gallery {
-                column-count: 2;
-                .gallery-img img {
-                    max-width: 100%;
-                }
+}
+
+@media screen and (max-width: 650px) {
+    .main-container {
+        margin: 0;
+    }
+    .gallery-lightbox-container {
+        padding: 0;
+        padding-top: 120px;
+        .gallery {
+            column-count: 1;
+            .gallery-img img {
+                width: 100%;
             }
         }
     }
-    
-    @media screen and (max-width: 650px) {
-        .gallery-lightbox-container {
-            .gallery {
-                column-count: 1;
-                .gallery-img img {
-                    width: 100%;
-                }
-            }
-        }
-    }
+}
