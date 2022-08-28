@@ -124,19 +124,27 @@ export class AppComponent implements OnInit {
   // if user click on next button to see next picture
   next(): void {
     this.currentIndex = this.currentIndex + 1;
-    if (this.currentIndex > this.galleryImages.length - 1) {
-      this.currentIndex = 0;
+    if (this.searchOn) {
+      this.nextS()
+    } else {
+      if (this.currentIndex > this.galleryImages.length - 1) {
+        this.currentIndex = 0;
+      }
+      this.currentImageIndex = this.galleryImages[this.currentIndex];
     }
-    this.currentImageIndex = this.galleryImages[this.currentIndex];
   }
 
   // if user click on back button to see previous picture
   prev(): void {
     this.currentIndex = this.currentIndex - 1;
-    if (this.currentIndex < 0) {
-      this.currentIndex = this.galleryImages.length - 1;
+    if (this.searchOn) {
+      this.prevS()
+    } else {
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.galleryImages.length - 1;
+      }
+      this.currentImageIndex = this.galleryImages[this.currentIndex];
     }
-    this.currentImageIndex = this.galleryImages[this.currentIndex];
   }
 
   // Search images name through gallery Array
@@ -180,7 +188,6 @@ export class AppComponent implements OnInit {
   }
   // if user click on next button to see next picture
   nextS(): void {
-    this.currentIndex = this.currentIndex + 1;
     if (this.currentIndex > this.searchedImages.length - 1) {
       this.currentIndex = 0;
     }
@@ -189,7 +196,6 @@ export class AppComponent implements OnInit {
 
   // if user click on back button to see previous picture
   prevS(): void {
-    this.currentIndex = this.currentIndex - 1;
     if (this.currentIndex < 0) {
       this.currentIndex = this.searchedImages.length - 1;
     }
