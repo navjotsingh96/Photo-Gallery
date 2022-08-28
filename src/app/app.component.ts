@@ -84,6 +84,7 @@ export class AppComponent implements OnInit {
         this.allImages = data;
         this.totalImageCount = this.galleryImages.length;
         this.loading = false;
+        this.galleryImages = this.allImages
 
       }))
 
@@ -100,10 +101,13 @@ export class AppComponent implements OnInit {
     this.showMask = true;
     this.previewImage = true;
     this.currentIndex = index;
-    this.currentImageIndex = this.galleryImages[index];
     this.controls = true;
+    if (this.searchOn) {
+      this.currentImageIndex = this.searchedImages[index]
+    } else {
+      this.currentImageIndex = this.galleryImages[index];
 
-
+    }
   }
 
   // if user close Full image view it helps to play end closing Animation
@@ -145,30 +149,54 @@ export class AppComponent implements OnInit {
     this.searchedImages = searched;
     if (this.search) {
       this.searchOn = true;
-      this.galleryImages = searched;
+
       this.notFound = false;
     }
     if (!this.search) {
       this.searchOn = false;
       this.galleryImages = this.allImages;
-      window.location.reload();
 
     }
-    this.noImageFound();
     this.imageFound();
+    this.noImageFound();
+
   }
 
-  imageFound(){
+  imageFound() {
     if (this.galleryImages.length) {
-      console.log('Found');
       this.notFound = false;
     }
   }
   noImageFound() {
-    if (!this.galleryImages.length) {
-      console.log('Not Found');
+    if (!this.searchedImages.length) {
       this.notFound = true;
     }
+  }
+
+  prveSearch(index): void {
+    this.showMask = true;
+    this.previewImage = true;
+    this.currentIndex = index;
+    this.controls = true;
+    this.currentImageIndex = this.searchedImages[index];
+
+  }
+  // if user click on next button to see next picture
+  nextS(): void {
+    this.currentIndex = this.currentIndex + 1;
+    if (this.currentIndex > this.searchedImages.length - 1) {
+      this.currentIndex = 0;
+    }
+    this.currentImageIndex = this.searchedImages[this.currentIndex];
+  }
+
+  // if user click on back button to see previous picture
+  prevS(): void {
+    this.currentIndex = this.currentIndex - 1;
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.searchedImages.length - 1;
+    }
+    this.currentImageIndex = this.searchedImages[this.currentIndex];
   }
 }
 

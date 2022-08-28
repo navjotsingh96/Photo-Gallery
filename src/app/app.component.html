@@ -38,7 +38,7 @@
                     <div class="searched" *ngIf="searchedImages">
                         <div *ngFor="let search of searchedImages; let i=index" class="gallery-img">
                             <div class="image-container">
-                                <img (click)="onPreviewImage(i)" [src]="search.image">
+                                <img (click)="prveSearch(i)" [src]="search.image">
                                 <span *ngIf="search.name" class="tag">{{search.name}}</span>
                             </div>
                         </div>
@@ -55,10 +55,10 @@
             <mat-icon>close</mat-icon>
         </button>
 
-                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prev()">
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prevS()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-next" (click)="next()">
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-next" (click)="nextS()">
             <mat-icon>keyboard_arrow_right</mat-icon>
 
             <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next"></i>
