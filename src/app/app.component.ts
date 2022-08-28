@@ -65,9 +65,6 @@ export class AppComponent implements OnInit {
 
   downloadFile(index) {
     this.data = this.allImages[index].image;
-
-    console.log(this.data);
-
     const blob = new Blob([this.data]);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
   }
