@@ -55,10 +55,10 @@
             <mat-icon>close</mat-icon>
         </button>
 
-                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prev()">
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (keydown.arrowleft)="prev()" (click)="prev()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-next" (click)="next()">
+                    <button mat-icon-button *ngIf="controls" class="btn-lightbox-carousel btn-next" (keydown.arrowright)="next()" (click)="next()">
             <mat-icon>keyboard_arrow_right</mat-icon>
 
             <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next"></i>

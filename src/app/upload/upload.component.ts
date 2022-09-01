@@ -20,9 +20,9 @@ export class UploadComponent implements OnInit {
   downloadURL: any;
   ImageUrl: any;
 
-  imageData: Image= new Image();
+  imageData: Image = new Image();
   Uploadallowed = false;
-
+  fileName: string;
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
@@ -32,10 +32,11 @@ export class UploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   uploadImagestoStorgae(event: any) {
     const file = event.target.files[0];
     const filePath = `uploadedImages/${file.name}`;
+    this.fileName = file.name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     task
@@ -46,6 +47,7 @@ export class UploadComponent implements OnInit {
           this.downloadURL.subscribe((url: any) => {
             if (url) {
               this.ImageUrl = url;
+              this.imageUploadedtoDBSnack();
             }
           });
         })
@@ -53,32 +55,50 @@ export class UploadComponent implements OnInit {
       .subscribe(url => {
         if (url) {
           console.log(url);
-          this.imageUploadedtoDBSnack();
         }
       });
   }
 
   setInCollection() {
-    if (!this.imageData.name && !this.imageData.image) {
+    if (!this.ImageUrl) {
       return
-    } else
+    } if (!this.imageData.name && !this.imageData.image) {
+      this.imageData.name = this.fileName;
+      this.imageData.image = this.ImageUrl;
+      this.UploadDataToCollection()
+    }
+    else
     this.imageData.image = this.ImageUrl;
+    this.UploadDataToCollection()
+
+
+  }
+  UploadDataToCollection() {
     this.firestore
       .collection('images')
       .add(this.imageData.toJSON())
       .then(done => {
         this.openSnackBar();
         this.dialog.closeAll();
-
-
       })
+  }
+
+  cancelUpload() {
+    if (this.ImageUrl) {
+      this.storage
+        .storage.refFromURL(this.ImageUrl)
+        .delete()
+      this.dialog.closeAll();
+    } else
+      this.dialog.closeAll();
+
   }
   openSnackBar() {
     this._snackBar.open('Uploaded sucessfully', '', {
       duration: 3000
     });
   }
-  imageUploadedtoDBSnack(){
+  imageUploadedtoDBSnack() {
     this._snackBar.open('Ready to upload', '', {
       duration: 3000
     });
