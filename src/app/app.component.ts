@@ -7,6 +7,8 @@ import { fail } from 'assert';
 import { Image } from './models/image.class';
 import { UploadComponent } from './upload/upload.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -54,7 +56,9 @@ export class AppComponent implements OnInit {
   data
   constructor(private firestore: AngularFirestore,
     public dialog: MatDialog,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private storage: AngularFireStorage,
+    private _snackBar: MatSnackBar
   ) {
   }
 
@@ -73,7 +77,7 @@ export class AppComponent implements OnInit {
   takeImagesFromDB() {
     this.firestore
       .collection('images')
-      .valueChanges()
+      .valueChanges({idField: 'customIdName'})
       .subscribe((data => {
         this.galleryImages = data.sort((img1: any, img2: any) => { // neu nachrichen werden am Ende gezeigt
           return img1.time - img2.time;
@@ -82,10 +86,7 @@ export class AppComponent implements OnInit {
         this.totalImageCount = this.galleryImages.length;
         this.loading = false;
         this.galleryImages = this.allImages
-
       }))
-
-
   }
 
   // To open Dialog if user want to upload images
@@ -112,6 +113,34 @@ export class AppComponent implements OnInit {
     if (event) {
       this.showMask = false;
     }
+  }
+
+  // delete image from everywhere
+  deleteImage(image, id){
+    console.log('clciked', image, id);
+    this.deleteFromStorage(image);
+    this.deleteFromFireStore(id);
+  }
+
+  // delete image from Storage
+  deleteFromStorage(image){
+    this.storage
+    .storage.refFromURL(image)
+    .delete()
+  }
+
+  // delete image from Firestore database
+  deleteFromFireStore(id){
+    this.firestore
+    .collection('images')
+    .doc(id)
+    .delete()
+    .catch((e)=>{
+      console.log(e);
+    })
+    .then(()=>{
+      this.openSnackBar()
+    })
   }
 
   // on Close buttons will disappear
@@ -200,6 +229,12 @@ export class AppComponent implements OnInit {
       this.currentIndex = this.searchedImages.length - 1;
     }
     this.currentImageIndex = this.searchedImages[this.currentIndex];
+  }
+   // if data succesfully uploaded to DB
+   openSnackBar() {
+    this._snackBar.open('Deleted sucessfully', '', {
+      duration: 3000
+    });
   }
 }
 

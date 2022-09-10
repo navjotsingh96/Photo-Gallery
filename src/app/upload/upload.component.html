@@ -18,8 +18,7 @@
     <div class="buttons">
         <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
         <input hidden #fileInput (change)="uploadImagestoStorgae($event)" type="file" id="file" name="image" accept=".png, .jpg">
-        <button mat-raised-button (click)="setInCollection()"> Upload</button>
+        <button mat-raised-button [disabled]="!Uploadallowed" disabled (click)="setInCollection()"> Upload</button>
         <button mat-raised-button mat-dialog-close (click)="cancelUpload()"> Close</button>
-
     </div>
 </div>

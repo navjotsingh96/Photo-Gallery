@@ -240,6 +240,30 @@ mat-form-field {
     top: 18%;
 }
 
+.download {
+    left: 15px !important;
+    position: absolute;
+    bottom: 15px;
+    button {
+        background-color: #404040;
+    }
+    mat-icon {
+        color: white !important;
+    }
+}
+
+.del-icon {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    button {
+        background-color: #404040;
+    }
+    mat-icon {
+        color: #ef7474 !important;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .gallery-lightbox-container {
         .gallery {

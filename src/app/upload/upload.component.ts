@@ -23,6 +23,7 @@ export class UploadComponent implements OnInit {
   imageData: Image = new Image();
   Uploadallowed = false;
   fileName: string;
+
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
@@ -33,6 +34,7 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Upload image to Storage
   uploadImagestoStorgae(event: any) {
     const file = event.target.files[0];
     const filePath = `uploadedImages/${file.name}`;
@@ -55,10 +57,12 @@ export class UploadComponent implements OnInit {
       .subscribe(url => {
         if (url) {
           console.log(url);
+          this.Uploadallowed = true;
         }
       });
   }
 
+  // Check if erveything is filled
   setInCollection() {
     if (!this.ImageUrl) {
       return
@@ -68,11 +72,13 @@ export class UploadComponent implements OnInit {
       this.UploadDataToCollection()
     }
     else
-    this.imageData.image = this.ImageUrl;
+      this.imageData.image = this.ImageUrl;
     this.UploadDataToCollection()
 
 
   }
+
+  // Set image Url from Storage and tag/name in firebase collecion
   UploadDataToCollection() {
     this.firestore
       .collection('images')
@@ -83,6 +89,7 @@ export class UploadComponent implements OnInit {
       })
   }
 
+  // if user selects image to upload but not want to Upload it deletes image from Storage
   cancelUpload() {
     if (this.ImageUrl) {
       this.storage
@@ -93,11 +100,15 @@ export class UploadComponent implements OnInit {
       this.dialog.closeAll();
 
   }
+
+  // if data succesfully uploaded to DB
   openSnackBar() {
     this._snackBar.open('Uploaded sucessfully', '', {
       duration: 3000
     });
   }
+
+  // if image succesfully uplaod to Storage
   imageUploadedtoDBSnack() {
     this._snackBar.open('Ready to upload', '', {
       duration: 3000

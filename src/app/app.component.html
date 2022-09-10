@@ -29,7 +29,18 @@
                             <div class="image-container">
                                 <img (click)="onPreviewImage(i)" [src]="data.image">
                                 <span *ngIf="data.name" class="tag">{{data.name}}</span>
+                                <span class="download"> <a [href]="data.image" class="btn clss"
+                                    target="_blank" [download]="data.image"> <button mat-mini-fab>
+                                        <mat-icon>download</mat-icon>
 
+                                      </button></a></span>
+                                <div class="del-icon">
+
+                                    <button (click)="deleteImage(data.image, data.customIdName)" mat-mini-fab>
+                                        <mat-icon>delete</mat-icon>
+
+                                      </button>
+                                </div>
                                 <!--    <span> <a [href]="data.image" class="btn clss"
                             target="_blank" [download]="data.image">Download</a></span> -->
                             </div>
