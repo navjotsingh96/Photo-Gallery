@@ -56,7 +56,6 @@ export class UploadComponent implements OnInit {
       )
       .subscribe(url => {
         if (url) {
-          console.log(url);
           this.Uploadallowed = true;
         }
       });

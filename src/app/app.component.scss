@@ -150,16 +150,21 @@
         }
         .close-btn {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 20px;
+            right: 20px;
             padding: 0;
             color: #fff;
             background: 0 0;
             border: 0;
             cursor: pointer;
-            width: 7%;
-            height: 10%;
+            width: 50px;
+            height: 50px;
+            background-color: #828181;
             z-index: 2;
+            transition: all 115ms ease-in-out;
+            &:hover {
+                background-color: #000000b3;
+            }
             .fa-times {
                 font-size: 25px;
             }
@@ -170,8 +175,8 @@
             justify-content: center;
             align-items: center;
             z-index: 1;
-            width: 5%;
-            height: 5%;
+            width: 50px;
+            height: 50px;
             padding: 0;
             color: #fff;
             text-align: center;
@@ -179,13 +184,16 @@
             border: 0;
             cursor: pointer;
             background-color: #000000b3;
-            box-shadow: 0 0 20px 0px;
+            transition: all 115ms ease-in-out;
+            &:hover {
+                background-color: grey;
+            }
         }
         .btn-prev {
-            left: 0;
+            left: 20px;
         }
         .btn-next {
-            right: 0;
+            right: 20px;
         }
         .icon-lightbox-carousel {
             color: #fff;
@@ -246,6 +254,10 @@ mat-form-field {
     bottom: 15px;
     button {
         background-color: #404040;
+        transition: all 115ms ease-in-out;
+        &:hover {
+            background-color: #007900;
+        }
     }
     mat-icon {
         color: white !important;
@@ -258,6 +270,10 @@ mat-form-field {
     right: 20px;
     button {
         background-color: #404040;
+        transition: all 115ms ease-in-out;
+        &:hover {
+            background-color: #ed0000ba;
+        }
     }
     mat-icon {
         color: #ef7474 !important;

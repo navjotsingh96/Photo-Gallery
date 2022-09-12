@@ -1,10 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { fail } from 'assert';
-import { Image } from './models/image.class';
 import { UploadComponent } from './upload/upload.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -77,7 +74,7 @@ export class AppComponent implements OnInit {
   takeImagesFromDB() {
     this.firestore
       .collection('images')
-      .valueChanges({idField: 'customIdName'})
+      .valueChanges({ idField: 'customIdName' })
       .subscribe((data => {
         this.galleryImages = data.sort((img1: any, img2: any) => { // neu nachrichen werden am Ende gezeigt
           return img1.time - img2.time;
@@ -116,31 +113,31 @@ export class AppComponent implements OnInit {
   }
 
   // delete image from everywhere
-  deleteImage(image, id){
+  deleteImage(image, id) {
     console.log('clciked', image, id);
     this.deleteFromStorage(image);
     this.deleteFromFireStore(id);
   }
 
   // delete image from Storage
-  deleteFromStorage(image){
+  deleteFromStorage(image) {
     this.storage
-    .storage.refFromURL(image)
-    .delete()
+      .storage.refFromURL(image)
+      .delete()
   }
 
   // delete image from Firestore database
-  deleteFromFireStore(id){
+  deleteFromFireStore(id) {
     this.firestore
-    .collection('images')
-    .doc(id)
-    .delete()
-    .catch((e)=>{
-      console.log(e);
-    })
-    .then(()=>{
-      this.openSnackBar()
-    })
+      .collection('images')
+      .doc(id)
+      .delete()
+      .catch((e) => {
+        console.log(e);
+      })
+      .then(() => {
+        this.openSnackBar()
+      })
   }
 
   // on Close buttons will disappear
@@ -183,39 +180,32 @@ export class AppComponent implements OnInit {
     this.searchedImages = searched;
     if (this.search) {
       this.searchOn = true;
-
       this.notFound = false;
     }
     if (!this.search) {
       this.searchOn = false;
       this.galleryImages = this.allImages;
-
     }
     this.imageFound();
     this.noImageFound();
-
   }
 
+  // if image found with name or Tag 
   imageFound() {
     if (this.galleryImages.length) {
       this.notFound = false;
     }
   }
+
+  // if image not found with name or Tag 
   noImageFound() {
     if (!this.searchedImages.length) {
       this.notFound = true;
     }
   }
 
-  prveSearch(index): void {
-    this.showMask = true;
-    this.previewImage = true;
-    this.currentIndex = index;
-    this.controls = true;
-    this.currentImageIndex = this.searchedImages[index];
 
-  }
-  // if user click on next button to see next picture
+  // if images found in search and user sees in Fullscreen and want to see next image on fullscreen modus
   nextS(): void {
     if (this.currentIndex > this.searchedImages.length - 1) {
       this.currentIndex = 0;
@@ -223,15 +213,16 @@ export class AppComponent implements OnInit {
     this.currentImageIndex = this.searchedImages[this.currentIndex];
   }
 
-  // if user click on back button to see previous picture
+  // if images found in search and user sees in Fullscreen and want to see previous image on fullscreen modus
   prevS(): void {
     if (this.currentIndex < 0) {
       this.currentIndex = this.searchedImages.length - 1;
     }
     this.currentImageIndex = this.searchedImages[this.currentIndex];
   }
-   // if data succesfully uploaded to DB
-   openSnackBar() {
+
+  // if data succesfully uploaded to DB
+  openSnackBar() {
     this._snackBar.open('Deleted sucessfully', '', {
       duration: 3000
     });
