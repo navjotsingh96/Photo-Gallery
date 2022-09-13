@@ -15,8 +15,6 @@ import { Image } from '../models/image.class';
 })
 export class UploadComponent implements OnInit {
 
-  nameFormControl = new FormControl('', [Validators.required]);
-
   downloadURL: any;
   ImageUrl: any;
 

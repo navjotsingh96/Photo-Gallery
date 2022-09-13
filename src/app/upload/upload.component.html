@@ -4,13 +4,7 @@
     <form class="form" (submit)="setInCollection()">
         <mat-form-field appearance="fill">
             <mat-label>Tag or Name</mat-label>
-            <input type="text" [(ngModel)]="imageData.name" matInput [formControl]="nameFormControl" placeholder="Ex. Cat, Dog, Navjot...">
-            <mat-error *ngIf="nameFormControl.hasError('name') && !nameFormControl.hasError('required')">
-                Please enter a Name
-            </mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('required')">
-                Name is <strong>required</strong>
-            </mat-error>
+            <input type="text" [(ngModel)]="imageData.name" [ngModelOptions]="{standalone: true}" matInput placeholder="Ex. Cat, Dog, Navjot...">
         </mat-form-field>
     </form>
 

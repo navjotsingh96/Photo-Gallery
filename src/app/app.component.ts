@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
   allImages;
   fileUrl;
   notFound: boolean = false;
-  data
+  data; // to downlaod images
   constructor(private firestore: AngularFirestore,
     public dialog: MatDialog,
     private sanitizer: DomSanitizer,
@@ -63,11 +63,11 @@ export class AppComponent implements OnInit {
     this.takeImagesFromDB();
   }
 
-  downloadFile(index) {
+/*   downloadFile(index) {
     this.data = this.allImages[index].image;
     const blob = new Blob([this.data]);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-  }
+  } */
 
   //To download Images from DB
   takeImagesFromDB() {
