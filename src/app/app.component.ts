@@ -61,7 +61,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.takeImagesFromDB();
-
   }
 
   downloadFile(index) {
@@ -98,7 +97,7 @@ export class AppComponent implements OnInit {
     this.currentIndex = index;
     this.controls = true;
     if (this.searchOn) {
-      this.currentImageIndex = this.searchedImages[index]
+      this.currentImageIndex = this.searchedImages[index];
     } else {
       this.currentImageIndex = this.galleryImages[index];
 
@@ -114,7 +113,6 @@ export class AppComponent implements OnInit {
 
   // delete image from everywhere
   deleteImage(image, id) {
-    console.log('clciked', image, id);
     this.deleteFromStorage(image);
     this.deleteFromFireStore(id);
   }

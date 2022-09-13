@@ -68,13 +68,11 @@ export class UploadComponent implements OnInit {
     } if (!this.imageData.name && !this.imageData.image) {
       this.imageData.name = this.fileName;
       this.imageData.image = this.ImageUrl;
-      this.UploadDataToCollection()
-    }
-    else
+      this.UploadDataToCollection();
+    } else {
       this.imageData.image = this.ImageUrl;
-    this.UploadDataToCollection()
-
-
+      this.UploadDataToCollection();     
+    }
   }
 
   // Set image Url from Storage and tag/name in firebase collecion
