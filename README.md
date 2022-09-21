@@ -1,5 +1,5 @@
 # PhotoGallery
-To check the this Project <a href="https://photo-gallery-a7b53.web.app">Click hier</a> <br>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
 
 ## Development server
